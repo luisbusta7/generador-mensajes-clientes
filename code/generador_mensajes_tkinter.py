@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import messagebox
 from pathlib import Path
 import sys
 
@@ -60,8 +60,8 @@ def boton_generar():
 
     nombre = entrada_nombre.get().strip().title()
     pedido = entrada_pedido.get().strip()
-    tienda = combo_tienda.get()
-    tipo_mensaje = combo_tipo.get()
+    tienda = tienda_var.get()
+    tipo_mensaje = tipo_var.get()
 
     if nombre == "":
         messagebox.showwarning("Falta el nombre", "Introduce el nombre del cliente.")
@@ -110,8 +110,8 @@ def boton_limpiar():
 
     entrada_nombre.delete(0, tk.END)
     entrada_pedido.delete(0, tk.END)
-    combo_tienda.set("")
-    combo_tipo.set("")
+    tienda_var.set("")
+    tipo_var.set("")
     caja_mensaje.delete("1.0", tk.END)
 
 
@@ -144,153 +144,109 @@ def boton_guardar():
 
 ventana = tk.Tk()
 ventana.title("Generador de mensajes para clientes")
-ventana.geometry("650x600")
+ventana.geometry("720x620")
 ventana.resizable(False, False)
+ventana.configure(bg="#f2f2f2")
 
-# ============================================
-# TÍTULO
-# ============================================
+def crear_interfaz():
+    global entrada_nombre, entrada_pedido, tienda_var, tipo_var, caja_mensaje
 
-titulo = tk.Label(
-    ventana,
-    text="Generador de mensajes para clientes",
-    font=("Arial", 20, "bold")
-)
-titulo.pack(pady=15)
+    contenedor = tk.Frame(ventana, bg="#f2f2f2", padx=24, pady=20)
+    contenedor.pack(fill="both", expand=True)
 
-subtitulo = tk.Label(
-    ventana,
-    text="Nombre de la empresa",
-    font=("Arial", 12)
-)
-subtitulo.pack(pady=5)
+    titulo = tk.Label(
+        contenedor,
+        text="Generador de mensajes para clientes",
+        font=("Arial", 20, "bold"),
+        bg="#f2f2f2",
+        fg="#222222"
+    )
+    titulo.pack(pady=(0, 8))
 
-# ============================================
-# MARCO DE DATOS
-# ============================================
+    subtitulo = tk.Label(
+        contenedor,
+        text="Nombre de la empresa",
+        font=("Arial", 12),
+        bg="#f2f2f2",
+        fg="#333333"
+    )
+    subtitulo.pack(pady=(0, 16))
 
-frame_datos = tk.Frame(ventana)
-frame_datos.pack(pady=15)
+    frame_datos = tk.LabelFrame(
+        contenedor,
+        text="Datos del cliente",
+        bg="#f2f2f2",
+        fg="#222222",
+        padx=15,
+        pady=12,
+        font=("Arial", 11, "bold")
+    )
+    frame_datos.pack(fill="x", pady=(0, 16))
+    frame_datos.columnconfigure(0, weight=0)
+    frame_datos.columnconfigure(1, weight=1)
 
-# Nombre cliente
-label_nombre = tk.Label(frame_datos, text="Nombre del cliente:", font=("Arial", 11))
-label_nombre.grid(row=0, column=0, padx=10, pady=8, sticky="e")
+    label_nombre = tk.Label(frame_datos, text="Nombre del cliente:", font=("Arial", 11), bg="#f2f2f2", fg="#222222")
+    label_nombre.grid(row=0, column=0, padx=(0, 12), pady=8, sticky="e")
 
-entrada_nombre = tk.Entry(frame_datos, width=35, font=("Arial", 11))
-entrada_nombre.grid(row=0, column=1, padx=10, pady=8)
+    entrada_nombre = tk.Entry(frame_datos, width=42, font=("Arial", 11), bg="white", fg="#111111")
+    entrada_nombre.grid(row=0, column=1, pady=8, sticky="ew")
 
-# Pedido
-label_pedido = tk.Label(frame_datos, text="Nº pedido/reserva:", font=("Arial", 11))
-label_pedido.grid(row=1, column=0, padx=10, pady=8, sticky="e")
+    label_pedido = tk.Label(frame_datos, text="Nº pedido/reserva:", font=("Arial", 11), bg="#f2f2f2", fg="#222222")
+    label_pedido.grid(row=1, column=0, padx=(0, 12), pady=8, sticky="e")
 
-entrada_pedido = tk.Entry(frame_datos, width=35, font=("Arial", 11))
-entrada_pedido.grid(row=1, column=1, padx=10, pady=8)
+    entrada_pedido = tk.Entry(frame_datos, width=42, font=("Arial", 11), bg="white", fg="#111111")
+    entrada_pedido.grid(row=1, column=1, pady=8, sticky="ew")
 
-# Tienda
-label_tienda = tk.Label(frame_datos, text="Tienda:", font=("Arial", 11))
-label_tienda.grid(row=2, column=0, padx=10, pady=8, sticky="e")
+    label_tienda = tk.Label(frame_datos, text="Tienda:", font=("Arial", 11), bg="#f2f2f2", fg="#222222")
+    label_tienda.grid(row=2, column=0, padx=(0, 12), pady=8, sticky="e")
 
-tiendas = [
-    "Tienda 1",
-    "Tienda 2",
-    "Tienda 3"
-]
+    tiendas = ["Tienda 1", "Tienda 2", "Tienda 3"]
+    tienda_var = tk.StringVar(value="")
+    menu_tienda = tk.OptionMenu(frame_datos, tienda_var, *tiendas)
+    menu_tienda.config(width=38, font=("Arial", 11), bg="white", fg="#111111", anchor="w")
+    menu_tienda.grid(row=2, column=1, pady=8, sticky="ew")
 
-combo_tienda = ttk.Combobox(
-    frame_datos,
-    values=tiendas,
-    width=32,
-    font=("Arial", 11),
-    state="readonly"
-)
-combo_tienda.grid(row=2, column=1, padx=10, pady=8)
+    label_tipo = tk.Label(frame_datos, text="Tipo de mensaje:", font=("Arial", 11), bg="#f2f2f2", fg="#222222")
+    label_tipo.grid(row=3, column=0, padx=(0, 12), pady=8, sticky="e")
 
-# Tipo de mensaje
-label_tipo = tk.Label(frame_datos, text="Tipo de mensaje:", font=("Arial", 11))
-label_tipo.grid(row=3, column=0, padx=10, pady=8, sticky="e")
+    tipos_mensaje = [
+        "Pedido preparado para recoger",
+        "Reserva confirmada",
+        "Pedido pendiente de recibir",
+        "Producto no disponible",
+        "Pedido preparado"
+    ]
+    tipo_var = tk.StringVar(value="")
+    menu_tipo = tk.OptionMenu(frame_datos, tipo_var, *tipos_mensaje)
+    menu_tipo.config(width=38, font=("Arial", 11), bg="white", fg="#111111", anchor="w")
+    menu_tipo.grid(row=3, column=1, pady=8, sticky="ew")
 
-tipos_mensaje = [
-    "Pedido preparado para recoger",
-    "Reserva confirmada",
-    "Pedido pendiente de recibir",
-    "Producto no disponible",
-    "Pedido preparado"
-]
+    frame_botones = tk.Frame(contenedor, bg="#f2f2f2")
+    frame_botones.pack(pady=(0, 14))
 
-combo_tipo = ttk.Combobox(
-    frame_datos,
-    values=tipos_mensaje,
-    width=32,
-    font=("Arial", 11),
-    state="readonly"
-)
-combo_tipo.grid(row=3, column=1, padx=10, pady=8)
+    boton_generar_mensaje = tk.Button(frame_botones, text="Generar mensaje", command=boton_generar, width=16, font=("Arial", 11))
+    boton_generar_mensaje.grid(row=0, column=0, padx=5)
 
-# ============================================
-# BOTONES
-# ============================================
+    boton_copiar_mensaje = tk.Button(frame_botones, text="Copiar mensaje", command=boton_copiar, width=16, font=("Arial", 11))
+    boton_copiar_mensaje.grid(row=0, column=1, padx=5)
 
-frame_botones = tk.Frame(ventana)
-frame_botones.pack(pady=10)
+    boton_guardar_mensaje = tk.Button(frame_botones, text="Guardar mensaje", command=boton_guardar, width=16, font=("Arial", 11))
+    boton_guardar_mensaje.grid(row=0, column=2, padx=5)
 
-boton_generar_mensaje = tk.Button(
-    frame_botones,
-    text="Generar mensaje",
-    command=boton_generar,
-    width=18,
-    font=("Arial", 11)
-)
-boton_generar_mensaje.grid(row=0, column=0, padx=5)
+    boton_limpiar_campos = tk.Button(frame_botones, text="Limpiar campos", command=boton_limpiar, width=16, font=("Arial", 11))
+    boton_limpiar_campos.grid(row=0, column=3, padx=5)
 
-boton_copiar_mensaje = tk.Button(
-    frame_botones,
-    text="Copiar mensaje",
-    command=boton_copiar,
-    width=18,
-    font=("Arial", 11)
-)
-boton_copiar_mensaje.grid(row=0, column=1, padx=5)
+    label_mensaje = tk.Label(contenedor, text="Mensaje generado:", font=("Arial", 12, "bold"), bg="#f2f2f2", fg="#222222")
+    label_mensaje.pack(anchor="w", pady=(0, 8))
 
-boton_guardar_mensaje = tk.Button(
-    frame_botones,
-    text="Guardar mensaje",
-    command=boton_guardar,
-    width=18,
-    font=("Arial", 11)
-)
-boton_guardar_mensaje.grid(row=0, column=2, padx=5)
+    caja_mensaje = tk.Text(contenedor, height=9, width=76, font=("Arial", 11), wrap="word", bg="white", fg="#111111")
+    caja_mensaje.pack(fill="x")
 
-boton_limpiar_campos = tk.Button(
-    ventana,
-    text="Limpiar campos",
-    command=boton_limpiar,
-    width=18,
-    font=("Arial", 11)
-)
-boton_limpiar_campos.pack(pady=5)
-
-# ============================================
-# CAJA DEL MENSAJE
-# ============================================
-
-label_mensaje = tk.Label(
-    ventana,
-    text="Mensaje generado:",
-    font=("Arial", 12, "bold")
-)
-label_mensaje.pack(pady=10)
-
-caja_mensaje = tk.Text(
-    ventana,
-    height=9,
-    width=70,
-    font=("Arial", 11),
-    wrap="word"
-)
-caja_mensaje.pack(pady=5)
+    ventana.update_idletasks()
 
 # ============================================
 # INICIAR APLICACIÓN
 # ============================================
 
+ventana.after(100, crear_interfaz)
 ventana.mainloop()

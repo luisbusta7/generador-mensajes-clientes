@@ -44,6 +44,8 @@ python3 code/generador_mensajes_tkinter.py
 
 ## Cómo crear el ejecutable
 
+En macOS es recomendable usar Python instalado desde python.org, no el Python del sistema (`/usr/bin/python3`). El Python de Apple usa una versión de Tk/Tcl obsoleta y puede generar ejecutables de Tkinter que abren una ventana vacía.
+
 Instala las dependencias:
 
 ```bash
