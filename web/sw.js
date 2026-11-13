@@ -1,6 +1,8 @@
-const CACHE = "mensajes-v5";
+const CACHE = "mensajes-v7";
 const ASSETS = [
   "./", "./index.html", "./assets/css/styles.css", "./assets/js/app.js", "./assets/js/core.mjs", "./manifest.webmanifest",
+  "./assets/images/cash-bustamante-logo.png",
+  "./assets/fonts/montserrat-latin.woff2", "./assets/fonts/montserrat-italic-latin.woff2", "./assets/fonts/archivo-latin.woff2",
   "./assets/icons/icon.svg", "./assets/icons/icon-192.png", "./assets/icons/icon-512.png"
 ];
 

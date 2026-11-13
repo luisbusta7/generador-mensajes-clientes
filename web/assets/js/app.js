@@ -4,7 +4,7 @@ const STORAGE_KEY = "generador-mensajes-v1";
 const $ = (id) => document.getElementById(id);
 const defaults = {
   version: 1,
-  company: "",
+  company: "Cash Bustamante",
   stores: ["Tienda 1", "Tienda 2", "Tienda 3"],
   templates: [
     { id: "recoger", name: "Pedido preparado para recoger", text: "Hola {nombre}, tu pedido nº {pedido} ya está preparado para recoger en {tienda}.\n\nMuchas gracias por confiar en nosotros." },

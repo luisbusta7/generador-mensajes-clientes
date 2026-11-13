@@ -1,12 +1,12 @@
 {
-  "name": "Generador de mensajes para clientes",
-  "short_name": "Mensajes",
+  "name": "Mensajes · Cash Bustamante",
+  "short_name": "Cash Mensajes",
   "description": "Mensajes personalizados para clientes, desde cualquier dispositivo.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f6f4",
-  "theme_color": "#163b47",
+  "background_color": "#fcf2e8",
+  "theme_color": "#002b49",
   "icons": [
     { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }

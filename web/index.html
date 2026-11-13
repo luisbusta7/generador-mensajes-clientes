@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#163b47">
-  <meta name="description" content="Genera y prepara mensajes personalizados para tus clientes.">
-  <title>Mensajes para clientes</title>
+  <meta name="theme-color" content="#002b49">
+  <meta name="description" content="Generador de mensajes para clientes de Cash Bustamante. Pedidos, reservas y avisos personalizados.">
+  <title>Mensajes para clientes · Cash Bustamante</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
@@ -13,20 +13,23 @@
   <script type="module" src="assets/js/app.js"></script>
 </head>
 <body>
+  <div class="brand-strip">CASH BUSTAMANTE <span aria-hidden="true">/</span> ATENCIÓN AL CLIENTE</div>
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="./" aria-label="Mensajes para clientes, inicio">
-        <span class="brand-icon" aria-hidden="true">✦</span>
-        <span>Mensajes <small>para clientes</small></span>
+      <a class="brand" href="./" aria-label="Cash Bustamante, inicio del generador de mensajes">
+        <img src="assets/images/cash-bustamante-logo.png" width="598" height="120" alt="Cash Bustamante">
       </a>
-      <button id="install" class="button button-outline" hidden>Instalar aplicación</button>
+      <div class="header-actions">
+        <span class="app-label">Generador de mensajes</span>
+        <button id="install" class="button button-outline" hidden>Instalar aplicación</button>
+      </div>
     </div>
   </header>
 
   <main class="container">
     <div class="page-heading">
       <div>
-        <p class="eyebrow">COMUNICACIÓN MÁS SENCILLA</p>
+        <p class="eyebrow">CERCA DE TI. CERCA DE TUS CLIENTES.</p>
         <h1>Un mensaje, listo para enviar.</h1>
         <p>Personaliza el texto y compártelo con tus clientes en unos segundos.</p>
       </div>
@@ -103,7 +106,7 @@
         </div>
         <form id="settings-form">
           <label>Nombre de la empresa
-            <input id="company" placeholder="Ej. Mi tienda">
+            <input id="company" placeholder="Ej. Cash Bustamante">
           </label>
           <label>Tiendas <small>Una por línea. Aparecerán en el selector.</small>
             <textarea id="stores-editor" rows="4" required></textarea>
@@ -140,7 +143,10 @@
         </div>
       </section>
     </div>
-    <footer>Los datos no se sincronizan entre dispositivos. No se envía ningún mensaje automáticamente.</footer>
+    <footer>
+      <strong>Cash Bustamante <span aria-hidden="true">·</span> Mensajes para clientes</strong>
+      <p>Los datos no se sincronizan entre dispositivos. No se envía ningún mensaje automáticamente.</p>
+    </footer>
   </main>
 </body>
 </html>
