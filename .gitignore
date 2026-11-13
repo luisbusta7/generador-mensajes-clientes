@@ -9,5 +9,3 @@ env/
 build/
 dist/
 *.spec
-
-code/mensajes_clientes.txt
