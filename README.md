@@ -2,6 +2,8 @@
 
 Aplicación web adaptable e instalable para generar mensajes personalizados para clientes.
 
+**Aplicación:** [Abrir el generador de mensajes](https://luisbusta7.github.io/generador-mensajes-clientes/)
+
 ## Descripción
 
 Este programa permite generar mensajes listos para copiar y enviar por SMS, email o cualquier red social de mensajería.
@@ -40,7 +42,7 @@ python3 -m http.server 18765 --directory web
 
 Abre <http://127.0.0.1:18765> en el mismo ordenador. Pulsa Ctrl+C en la terminal para detener el servidor. Si el puerto ya está ocupado, puedes elegir otro, teniendo en cuenta que cada dirección tiene su propio almacenamiento.
 
-Para usarla en el móvil, publica el contenido de `web/` en un servidor HTTPS y abre esa dirección en el móvil. Una dirección HTTP de la red local no es suficiente para instalarla, utilizar el portapapeles o activar el funcionamiento sin conexión en la mayoría de los navegadores. También puedes probarla en el ordenador mediante `localhost`.
+Para usarla en el móvil, abre el enlace de la aplicación en el navegador. También puedes publicar el contenido de `web/` en otro servidor HTTPS. Una dirección HTTP de la red local no es suficiente para instalarla, utilizar el portapapeles o activar el funcionamiento sin conexión en la mayoría de los navegadores.
 
 En navegadores compatibles aparecerá el botón **Instalar aplicación**. En iPhone, utiliza Safari y selecciona **Compartir → Añadir a pantalla de inicio**. Para que funcione sin conexión, abre la aplicación al menos una vez con conexión y espera a que se complete la instalación de sus recursos; WhatsApp requiere conexión. Al actualizar la aplicación, cambia la versión de la caché en `web/sw.js` para que se descarguen los recursos nuevos.
 
@@ -64,3 +66,4 @@ node --test tests/web.test.mjs
 
 - `web/`: aplicación, estilos, iconos y archivos de la PWA.
 - `tests/`: pruebas de la lógica web.
+- `.github/workflows/`: publicación automática en GitHub Pages al actualizar `main`.
