@@ -167,10 +167,16 @@ function renderHistory() {
       $("customer").value = item.customer;
       $("order").value = item.order;
       $("phone").value = "";
+      $("store").value = state.stores.includes(item.store) ? item.store : "";
+      $("template").value = state.templates.some((template) => template.id === item.templateId)
+        ? item.templateId : "";
       $("message").value = item.message;
+      generatedPreview = "";
       updateCount();
       $("message").focus();
-      notify("Mensaje cargado. Introduce el teléfono del cliente antes de usar WhatsApp.");
+      notify($("store").value && $("template").value
+        ? "Mensaje cargado con su tienda y tipo de mensaje. Introduce el teléfono del cliente antes de usar WhatsApp."
+        : "Mensaje cargado. Selecciona la tienda y el tipo de mensaje antes de cambiar los datos para regenerarlo. Introduce el teléfono antes de usar WhatsApp.");
     });
     const remove = document.createElement("button");
     remove.type = "button";
@@ -262,6 +268,7 @@ $("save-message").addEventListener("click", async () => {
   const next = structuredClone(state);
   next.history.unshift({
     id: newId(), customer: $("customer").value.trim(), order: $("order").value.trim(),
+    store: $("store").value, templateId: $("template").value,
     message, date: new Date().toISOString()
   });
   if (await saveState(next)) {

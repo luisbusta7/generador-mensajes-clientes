@@ -52,7 +52,7 @@ El almacenamiento depende de la dirección exacta: `localhost`, `127.0.0.1` y lo
 
 Si cambian los datos en otra pestaña, la aplicación impide sobrescribirlos y pide recargar; copia antes cualquier texto que no hayas guardado. Para proteger los datos entre pestañas, el guardado requiere un navegador actualizado con Web Locks y una página servida por HTTPS o localhost.
 
-Para abrir WhatsApp, introduce el número con `+` y el prefijo internacional, por ejemplo `+34 600 000 000`. El teléfono se borra al cambiar el nombre del cliente o cargar un mensaje del historial.
+Para abrir WhatsApp, introduce el número con `+` y el prefijo internacional, por ejemplo `+34 600 000 000`. El teléfono se borra al cambiar el nombre del cliente o cargar un mensaje del historial. Al recuperar un mensaje también se restauran su tienda y tipo de mensaje, si siguen disponibles. Los mensajes antiguos sin estos datos requieren seleccionarlos de nuevo antes de regenerar el texto.
 
 La copia automática intenta copiar el mensaje cuando terminas de editar un dato obligatorio y todos están completos. El navegador puede solicitar permisos o impedir la copia; en ese caso, usa el botón de copia o copia el texto manualmente. La vista previa se regenera al cambiar los datos del formulario y reemplaza las ediciones manuales; al guardar la configuración o las plantillas se conserva el texto editado.
 
@@ -64,6 +64,9 @@ node --test tests/web.test.mjs
 
 ## Estructura
 
-- `web/`: aplicación, estilos, iconos y archivos de la PWA.
+- `web/`: página principal (`index.html`), manifiesto y service worker de la PWA.
+- `web/assets/css/`: estilos.
+- `web/assets/js/`: interfaz y lógica de la aplicación.
+- `web/assets/icons/`: iconos de la web y de la aplicación instalable.
 - `tests/`: pruebas de la lógica web.
 - `.github/workflows/`: publicación automática en GitHub Pages al actualizar `main`.

@@ -11,6 +11,8 @@ export function validState(data) {
   return new Set(data.history.map((item) => item && item.id)).size === data.history.length &&
     data.history.every((item) => item && nonempty(item.id) &&
       typeof item.customer === "string" && typeof item.order === "string" &&
+      (item.store === undefined || typeof item.store === "string") &&
+      (item.templateId === undefined || typeof item.templateId === "string") &&
       nonempty(item.message) && nonempty(item.date) && !Number.isNaN(Date.parse(item.date)));
 }
 

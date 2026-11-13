@@ -1,7 +1,7 @@
-const CACHE = "mensajes-v4";
+const CACHE = "mensajes-v5";
 const ASSETS = [
-  "./", "./index.html", "./styles.css", "./app.js", "./core.mjs", "./manifest.webmanifest",
-  "./icon.svg", "./icon-192.png", "./icon-512.png"
+  "./", "./index.html", "./assets/css/styles.css", "./assets/js/app.js", "./assets/js/core.mjs", "./manifest.webmanifest",
+  "./assets/icons/icon.svg", "./assets/icons/icon-192.png", "./assets/icons/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
